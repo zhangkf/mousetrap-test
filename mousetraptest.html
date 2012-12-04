@@ -1,0 +1,57 @@
+<html>
+<head>
+<topic>
+</topic>
+<script src="mousetrap.js"></script>
+</head>
+<body>
+	<input type="text" class="mousetrap" tabindex="0" />
+	<input type="text" class="mousetrap" tabindex="1" />
+	<input type="text" class="mousetrap" tabindex="2" />
+	<input type="text" class="mousetrap" tabindex="3" />
+<!-- 	<textarea name="message" class="mousetrap"></textarea>
+ -->
+<script>
+    // single keys
+    Mousetrap.bind('4', function() { console.log('4'); });
+    Mousetrap.bind("?", function() { console.log('show shortcuts!'); });
+    Mousetrap.bind('esc', function() { console.log('escape'); }, 'keyup');
+
+    // combinations
+    Mousetrap.bind('command+shift+K', function() { console.log('command shift k'); });
+
+    // map multiple combinations to the same callback
+    Mousetrap.bind(['command+k', 'ctrl+k'], function() {
+        console.log('command k or control k');
+
+        // return false to prevent default browser behavior
+        // and stop event from bubbling
+        return false;
+    });
+
+    // gmail style sequences
+    Mousetrap.bind('g i', function() { console.log('go to inbox'); });
+    Mousetrap.bind('* a', function() { console.log('select all'); });
+
+    // konami code!
+    Mousetrap.bind('up up down down left right left right b a enter', function() {
+        console.log('konami code');
+    });
+
+    Mousetrap.bind(['tab'], function(e) {
+    	console.log('press tab');
+    	return false;
+	});
+
+	Mousetrap.bind(['enter'], function(e){
+		console.log('press enter');
+		var ti = parseInt($(e.target).attr('tabindex')) + 1;
+		console.log(ti);
+    	$('input[tabindex='+ti+']').focus();
+	});
+	
+</script>
+<script src="jquery-1.8.3.js"></script>
+
+</body>
+</html>
