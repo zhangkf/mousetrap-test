@@ -5,11 +5,11 @@
 <script src="mousetrap.js"></script>
 </head>
 <body>
-	<input type="text" class="mousetrap" tabindex="0" />
-	<input type="text" class="mousetrap" tabindex="1" />
-	<input type="text" class="mousetrap" tabindex="2" />
-	<input type="text" class="mousetrap" tabindex="3" />
-<!-- 	<textarea name="message" class="mousetrap"></textarea>
+    <input type="text" class="mousetrap" tabindex="0" />
+    <input type="text" class="mousetrap" tabindex="1" />
+    <input type="text" class="mousetrap" tabindex="2" />
+    <input type="text" class="mousetrap" tabindex="3" />
+<!--    <textarea name="message" class="mousetrap"></textarea>
  -->
 <script>
     // single keys
@@ -38,18 +38,25 @@
         console.log('konami code');
     });
 
-    Mousetrap.bind(['tab'], function(e) {
-    	console.log('press tab');
-    	return false;
-	});
+    Mousetrap.bind(['tab', 'shift+tab'], function(e) {
+        console.log('press tab');
+        return false;
+    });
 
-	Mousetrap.bind(['enter'], function(e){
-		console.log('press enter');
-		var ti = parseInt($(e.target).attr('tabindex')) + 1;
-		console.log(ti);
-    	$('input[tabindex='+ti+']').focus();
-	});
-	
+    Mousetrap.bind(['enter'], function(e){
+        console.log('press enter');
+        var ti = parseInt($(e.target).attr('tabindex')) + 1;
+        console.log(ti);
+        $('input[tabindex='+ti+']').focus();
+    });
+
+    Mousetrap.bind(['shift+enter'], function(e){
+        console.log('press shift+enter');
+        var ti = parseInt($(e.target).attr('tabindex')) - 1;
+        console.log(ti);
+        $('input[tabindex='+ti+']').focus();
+    });
+
 </script>
 <script src="jquery-1.8.3.js"></script>
 
